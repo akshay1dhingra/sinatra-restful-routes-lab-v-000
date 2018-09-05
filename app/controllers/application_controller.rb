@@ -44,6 +44,14 @@ end
     erb :edit
   end
 
+  patch '/recipes/:id' do
+    @recipe = Recipe.find_by_id(params[:id])
+    @recipe.name = params[:name]
+    @recipe.ingredients = params[:ingredients]
+    @recipe.cook_time = params[:cook_time]
+    redirect to '/recipes/#{@recipe.id}'
+  end
+
   #post '/recipes' do
   #  @recipes = Recipe.create(name: params[:name], ingredients: params[:ingredients], cook_time: params[:cook_time])
   #  redirect to "/recipes/#{@recipe.id}"
